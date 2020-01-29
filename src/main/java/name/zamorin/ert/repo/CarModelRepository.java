@@ -1,6 +1,6 @@
-package name.zamorin.carz.repo;
+package name.zamorin.ert.repo;
 
-import name.zamorin.carz.model.CarModel;
+import name.zamorin.ert.model.CarModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

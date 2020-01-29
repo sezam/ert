@@ -18,31 +18,37 @@
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="carModel" class="col-form-label">Car model</label>
-                        <select required class="form-control" id="carModel" name="carModel" path="carModel">
-                            <option value="" disabled selected hidden>Select Car model</option>
+                        <select required class="form-control" id="carModel" name="carModel"
+                                path="carModel" th:field="*{carModel}">
+                            <option value="" disabled selected hidden default>Select Car model</option>
                             <option th:each="model : ${models}"
                                     th:value="${model.id}"
-                                    th:text="${model.name}"></option>
+                                    th:text="${model.name}"
+                            ></option>
                         </select>
                     </div>
 
                     <div class="form-group col-md-6">
                         <label for="customer" class="col-form-label">Customer</label>
-                        <select required class="form-control" id="customer" name="customer" path="customer">
-                            <option value="" disabled selected hidden>Select customer</option>
+                        <select required class="form-control" id="customer" name="customer"
+                                path="customer" th:field="*{customer}">
+                            <option value="" disabled selected hidden default>Select customer</option>
                             <option th:each="customer : ${customers}"
                                     th:value="${customer.id}"
-                                    th:text="${customer.name}"></option>
+                                    th:text="${customer.name}"
+                            ></option>
                         </select>
                     </div>
 
                     <div class="form-group col-md-6">
                         <label for="office" class="col-form-label">Office</label>
-                        <select required class="form-control" id="office" name="office" path="office">
-                            <option value="" disabled selected hidden>Select office</option>
+                        <select required class="form-control" id="office" name="office"
+                                path="office" th:field="*{office}">
+                            <option value="" disabled selected hidden default>Select office</option>
                             <option th:each="office : ${offices}"
                                     th:value="${office.id}"
-                                    th:text="${office.name}"></option>
+                                    th:text="${office.name}"
+                            ></option>
                         </select>
                     </div>
 
@@ -60,11 +66,13 @@
 
                     <div class="form-group col-md-6">
                         <label for="carEvent" class="col-form-label">Car event</label>
-                        <select required class="form-control" id="carEvent" name="carEvent" path="carEvent">
-                            <option value="" disabled selected hidden>Select event</option>
+                        <select required class="form-control" id="carEvent" name="carEvent"
+                                path="carEvent" th:field="*{carEvent}">
+                            <option value="" disabled selected hidden default>Select event</option>
                             <option th:each="carEvent : ${events}"
                                     th:value="${carEvent}"
-                                    th:text="${carEvent}"></option>
+                                    th:text="${carEvent}"
+                            ></option>
                         </select>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-package name.zamorin.carz.model;
+package name.zamorin.ert.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +16,7 @@ import javax.validation.constraints.NotBlank;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Office {
+public class CarModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

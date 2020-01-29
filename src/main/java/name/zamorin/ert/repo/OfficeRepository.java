@@ -1,6 +1,6 @@
-package name.zamorin.carz.repo;
+package name.zamorin.ert.repo;
 
-import name.zamorin.carz.model.Office;
+import name.zamorin.ert.model.Office;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

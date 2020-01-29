@@ -1,10 +1,10 @@
-package name.zamorin.carz.ert;
+package name.zamorin.ert;
 
-import name.zamorin.carz.model.*;
-import name.zamorin.carz.repo.CarModelRepository;
-import name.zamorin.carz.repo.CustomerRepository;
-import name.zamorin.carz.repo.OfficeRepository;
-import name.zamorin.carz.repo.RentRepository;
+import name.zamorin.ert.model.*;
+import name.zamorin.ert.repo.CarModelRepository;
+import name.zamorin.ert.repo.CustomerRepository;
+import name.zamorin.ert.repo.OfficeRepository;
+import name.zamorin.ert.repo.RentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,19 +20,14 @@ import java.time.Duration;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.time.temporal.ChronoUnit;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-@EnableJpaRepositories(basePackages = "name.zamorin.carz.repo")
+@EnableJpaRepositories(basePackages = "name.zamorin.ert.repo")
 @EnableTransactionManagement
-@ComponentScan(basePackages = {"name.zamorin.carz"})
-@EntityScan(basePackages = "name.zamorin.carz.model")
+@ComponentScan(basePackages = {"name.zamorin.ert"})
+@EntityScan(basePackages = "name.zamorin.ert.model")
 public class ErtApplication {
     @Autowired
     private RentRepository rentRepo;
@@ -61,7 +56,7 @@ public class ErtApplication {
         Instant inst = Instant.now().minus(300, ChronoUnit.DAYS);
         DateTimeFormatter formatter =
                 DateTimeFormatter.ofPattern("uuuu-MM-dd")
-                        .withZone( ZoneId.systemDefault() );
+                        .withZone(ZoneId.systemDefault());
 
         for (int i = 0; i < 20; i++) {
             CarModel car = (Math.random() * 50 > 25 ? cm1 : cm2);

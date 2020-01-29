@@ -1,4 +1,4 @@
-package name.zamorin.carz.ert;
+package name.zamorin.ert;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

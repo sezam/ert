@@ -1,4 +1,4 @@
-package name.zamorin.carz.model;
+package name.zamorin.ert.model;
 
 public enum CarEvent {
     Rent,
