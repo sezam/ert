@@ -10,4 +10,8 @@ class ErtApplicationTests {
 	void contextLoads() {
 	}
 
+	@Test
+	void carModel(){
+
+	}
 }
