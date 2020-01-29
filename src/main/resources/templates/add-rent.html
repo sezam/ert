@@ -37,20 +37,35 @@
                     </div>
 
                     <div class="form-group col-md-6">
+                        <label for="office" class="col-form-label">Office</label>
+                        <select required class="form-control" id="office" name="office" path="office">
+                            <option value="" disabled selected hidden>Select office</option>
+                            <option th:each="office : ${offices}"
+                                    th:value="${office.id}"
+                                    th:text="${office.name}"></option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-6">
                         <label for="carNumber" class="col-form-label">Car number</label>
                         <input type="text" th:field="*{carNumber}" class="form-control" id="carNumber" placeholder="carNumber">
                         <span th:if="${#fields.hasErrors('carNumber')}" th:errors="*{carNumber}" class="text-danger"></span>
                     </div>
 
                     <div class="form-group col-md-6">
-                        <label for="startDate" class="col-form-label">Start date</label>
-                        <input type="date" th:field="*{startDate}" class="form-control" id="startDate" placeholder="startDate">
-                        <span th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}" class="text-danger"></span>
+                        <label for="eventDate" class="col-form-label">Event date</label>
+                        <input type="date" th:field="*{eventDate}" class="form-control" id="eventDate" placeholder="eventDate">
+                        <span th:if="${#fields.hasErrors('eventDate')}" th:errors="*{eventDate}" class="text-danger"></span>
                     </div>
+
                     <div class="form-group col-md-6">
-                        <label for="endDate" class="col-form-label">End date</label>
-                        <input type="date" th:field="*{endDate}" class="form-control" id="endDate" placeholder="endDate">
-                        <span th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}" class="text-danger"></span>
+                        <label for="carEvent" class="col-form-label">Car event</label>
+                        <select required class="form-control" id="carEvent" name="carEvent" path="carEvent">
+                            <option value="" disabled selected hidden>Select event</option>
+                            <option th:each="carEvent : ${events}"
+                                    th:value="${carEvent}"
+                                    th:text="${carEvent}"></option>
+                        </select>
                     </div>
                 </div>
                 <div class="row">

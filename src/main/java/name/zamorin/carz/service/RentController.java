@@ -1,8 +1,10 @@
 package name.zamorin.carz.service;
 
+import name.zamorin.carz.model.CarEvent;
 import name.zamorin.carz.model.Rent;
 import name.zamorin.carz.repo.CarModelRepository;
 import name.zamorin.carz.repo.CustomerRepository;
+import name.zamorin.carz.repo.OfficeRepository;
 import name.zamorin.carz.repo.RentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,20 +18,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.Valid;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Arrays;
 
 @Controller
 public class RentController {
     private final RentRepository rentRepo;
     private final CarModelRepository carModelRepo;
     private final CustomerRepository customerRepo;
+    private final OfficeRepository officeRepo;
 
     @Autowired
-    public RentController(RentRepository rentRepo, CarModelRepository carModelRepo, CustomerRepository customerRepo) {
+    public RentController(RentRepository rentRepo, CarModelRepository carModelRepo, CustomerRepository customerRepo, OfficeRepository officeRepo) {
         this.rentRepo = rentRepo;
         this.carModelRepo = carModelRepo;
         this.customerRepo = customerRepo;
+        this.officeRepo = officeRepo;
     }
 
     @GetMapping("/")
@@ -42,22 +45,29 @@ public class RentController {
     public String showRentForm(Rent rent, Model model) {
         model.addAttribute("models", carModelRepo.findAll());
         model.addAttribute("customers", customerRepo.findAll());
+        model.addAttribute("offices", officeRepo.findAll());
+        model.addAttribute("events", Arrays.asList(CarEvent.values()));
         return "add-rent";
     }
 
     @PostMapping("/addrent")
     public String addRent(@RequestBody MultiValueMap<String, String> formData,
                           BindingResult result, Model model) throws ParseException {
+
         Rent rent = Rent.builder()
                 .carModel(carModelRepo.findById(Long.valueOf(formData.getFirst("carModel")))
                         .orElseThrow(() -> new IllegalArgumentException("Invalid carModel Id")))
                 .customer(customerRepo.findById(Long.valueOf(formData.getFirst("customer")))
                         .orElseThrow(() -> new IllegalArgumentException("Invalid Customer Id")))
+                .office(officeRepo.findById(Long.valueOf(formData.getFirst("office")))
+                        .orElseThrow(() -> new IllegalArgumentException("Invalid Customer Id")))
+
                 .carNumber(formData.getFirst("carNumber"))
-                .startDate(formData.getFirst("startDate"))
-                .endDate(formData.getFirst("endDate"))
+                .eventDate(formData.getFirst("eventDate"))
+                .carEvent(CarEvent.valueOf(formData.getFirst("carEvent")))
                 .build();
         rentRepo.save(rent);
+
         model.addAttribute("rents", rentRepo.findAll());
         return "index";
     }
@@ -73,12 +83,14 @@ public class RentController {
 
     @PostMapping("/update/{id}")
     public String updateRent(@PathVariable("id") long id, @Valid Rent rent, BindingResult result, Model model) {
+/*
         if (result.hasErrors()) {
             rent.setId(id);
             return "update-rent";
         }
 
         rentRepo.save(rent);
+*/
         model.addAttribute("rents", rentRepo.findAll());
         return "index";
     }

@@ -12,10 +12,12 @@
 <body>
 <div th:switch="${rents}" class="container my-5">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <h2 th:case="null">No rent yet!</h2>
             <div th:case="*">
                 <h2 class="my-5">Rents</h2>
+                <p><a href="/newrent">Add a new rent</a></p>
+
                 <table class="table table-striped table-responsive-md">
                     <thead>
                     <tr>
@@ -23,8 +25,9 @@
                         <th>Car model</th>
                         <th>Car number</th>
                         <th>Customer</th>
-                        <th>Start</th>
-                        <th>End</th>
+                        <th>Office</th>
+                        <th>Event</th>
+                        <th>Date</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -35,15 +38,15 @@
                         <td th:text="${rent.carModel.name}"></td>
                         <td th:text="${rent.carNumber}"></td>
                         <td th:text="${rent.customer.name}"></td>
-                        <td th:text="${rent.startDate}"></td>
-                        <td th:text="${rent.endDate}"></td>
+                        <td th:text="${rent.office.name}"></td>
+                        <td th:text="${rent.carEvent}"></td>
+                        <td th:text="${rent.eventDate}"></td>
                         <td><a th:href="@{/edit/{id}(id=${rent.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
                         <td><a th:href="@{/delete/{id}(id=${rent.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-            <p><a href="/newrent">Add a new rent</a></p>
         </div>
     </div>
 </div>

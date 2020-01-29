@@ -30,12 +30,19 @@ public class Rent {
     @JoinColumn(name="customer_id")
     private Customer customer;
 
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name="office_id")
+    private Office office;
+
     @NotBlank
     private String carNumber;
 
     @NotBlank
-    private String startDate;
+    private String eventDate;
 
-    @NotBlank
-    private String endDate;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private CarEvent carEvent;
+
 }
