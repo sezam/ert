@@ -54,13 +54,13 @@
 
                     <div class="form-group col-md-6">
                         <label for="carNumber" class="col-form-label">Car number</label>
-                        <input type="text" th:field="*{carNumber}" class="form-control" id="carNumber" placeholder="carNumber">
+                        <input type="text" required th:field="*{carNumber}" class="form-control" id="carNumber" placeholder="carNumber">
                         <span th:if="${#fields.hasErrors('carNumber')}" th:errors="*{carNumber}" class="text-danger"></span>
                     </div>
 
                     <div class="form-group col-md-6">
                         <label for="eventDate" class="col-form-label">Event date</label>
-                        <input type="date" th:field="*{eventDate}" class="form-control" id="eventDate" placeholder="eventDate">
+                        <input type="date" required th:field="*{eventDate}" class="form-control" id="eventDate" placeholder="eventDate">
                         <span th:if="${#fields.hasErrors('eventDate')}" th:errors="*{eventDate}" class="text-danger"></span>
                     </div>
 

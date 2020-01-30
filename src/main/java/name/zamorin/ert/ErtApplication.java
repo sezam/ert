@@ -44,8 +44,9 @@ public class ErtApplication {
 
 
     private void initDB() {
-        CarModel cm1 = carModelRepo.save(CarModel.builder().name("Honda Accord").build());
+        CarModel cm1 = carModelRepo.save(CarModel.builder().name("Honda CRV").build());
         CarModel cm2 = carModelRepo.save(CarModel.builder().name("Mazda CX-5").build());
+        carModelRepo.save(CarModel.builder().name("Toyota LC-200").build());
 
         Customer cs1 = customerRepo.save(Customer.builder().name("Булочкин Вася").build());
         Customer cs2 = customerRepo.save(Customer.builder().name("Батончиков Петя").build());

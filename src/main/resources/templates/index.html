@@ -5,21 +5,88 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Rents</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/shards.min.css">
 </head>
 <body>
-<div th:switch="${rents}" class="container my-5">
+<div th:switch="${rents}" class="container my-3">
     <div class="row">
         <div class="col-md-12">
             <h2 th:case="null">No rent yet!</h2>
             <div th:case="*">
-                <h2 class="my-5">Rents</h2>
+                <h2 class="my-3">Rents</h2>
                 <p><a href="/newrent">Add a new rent</a></p>
+                <p><a href="/stats">Statistics</a></p>
 
                 <table class="table table-striped table-responsive-md">
                     <thead>
+                    <form action="#" th:action="@{/}" method="post">
+                        <tr>
+                            <th>Filter</th>
+                            <th>
+                                <select class="form-control" id="carModel" name="carModel" path="carModel">
+                                    <option value="" disabled selected hidden default>Select Car model</option>
+                                    <option th:each="model : ${models}"
+                                            th:value="${model.id}"
+                                            th:text="${model.name}"
+                                    ></option>
+                                </select>
+                            </th>
+                            <th>
+                                <select class="form-control" id="carNumbers" name="carNumbers"
+                                        path="carNumbers">
+                                    <option value="" disabled selected hidden default>Select car number</option>
+                                    <option th:each="carNumber : ${carNumbers}"
+                                            th:value="${carNumber}"
+                                            th:text="${carNumber}"
+                                    ></option>
+                                </select>
+                            </th>
+                            <th>
+                                <select class="form-control" id="customer" name="customer" path="customer">
+                                    <option value="" disabled selected hidden default>Select customer</option>
+                                    <option th:each="customer : ${customers}"
+                                            th:value="${customer.id}"
+                                            th:text="${customer.name}"
+                                    ></option>
+                                </select>
+                            </th>
+                            <th>
+                                <select class="form-control" id="office" name="office" path="office">
+                                    <option value="" disabled selected hidden default>Select office</option>
+                                    <option th:each="office : ${offices}"
+                                            th:value="${office.id}"
+                                            th:text="${office.name}"
+                                    ></option>
+                                </select>
+                            </th>
+                            <th>
+                                <select class="form-control" id="carEvent" name="carEvent" path="carEvent">
+                                    <option value="" disabled selected hidden default>Select event</option>
+                                    <option th:each="carEvent : ${events}"
+                                            th:value="${carEvent}"
+                                            th:text="${carEvent}"
+                                    ></option>
+                                </select>
+                            </th>
+                            <th>
+                                <input type="date" class="form-control" th:value="${leftDate}" id="leftDate"
+                                       name="leftDate" path="leftDate" placeholder="left date"/>
+                                <input type="date" class="form-control" th:value="${rightDate}" id="rightDate"
+                                       name="rightDate" path="rightDate" placeholder="right date"/>
+                            </th>
+                            <th>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-filter"/>
+                                </button>
+                            </th>
+                            </th>
+                            </th>
+                        </tr>
+                    </form>
                     <tr>
                         <th>Id</th>
                         <th>Car model</th>
@@ -28,7 +95,9 @@
                         <th>Office</th>
                         <th>Event</th>
                         <th>Date</th>
-                        <th>Edit</th>
+                        <!--
+                                                <th>Edit</th>
+                        -->
                         <th>Delete</th>
                     </tr>
                     </thead>
@@ -41,8 +110,12 @@
                         <td th:text="${rent.office.name}"></td>
                         <td th:text="${rent.carEvent}"></td>
                         <td th:text="${rent.eventDate}"></td>
-                        <td><a th:href="@{/edit/{id}(id=${rent.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
-                        <td><a th:href="@{/delete/{id}(id=${rent.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
+                        <!--
+                                                <td><a th:href="@{/edit/{id}(id=${rent.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+                        -->
+                        <td><a th:href="@{/delete/{id}(id=${rent.id})}" class="btn btn-primary">
+                            <i class="fas fa-user-times "></i></a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
